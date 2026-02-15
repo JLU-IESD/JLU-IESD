@@ -1,0 +1,18 @@
+[
+  {
+    "year": 2026,
+    "title": "A Robust Method for Trusted ML",
+    "authors": "Zhang S., Li S., ...",
+    "venue": "AAAI",
+    "paper": "https://arxiv.org/",
+    "code": "https://github.com/",
+    "project": "https://example.com"
+  },
+  {
+    "year": 2025,
+    "title": "Interpretable Learning in Practice",
+    "authors": "Zhang S., Wang W.",
+    "venue": "NeurIPS",
+    "paper": "https://arxiv.org/"
+  }
+]
