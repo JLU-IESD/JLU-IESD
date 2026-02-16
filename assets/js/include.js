@@ -1,7 +1,6 @@
 const BASE = "/JLU-IESD/"; // GitHub Pages 子路径（仓库名）
 
 function absPath(rel) {
-  // 把 "en/people/" 这种相对站点根目录的路径，变成 "/JLU-IESD/en/people/"
   return BASE + String(rel || "").replace(/^\/+/, "");
 }
 
@@ -18,8 +17,16 @@ function lang() {
   return isZh() ? "zh" : "en";
 }
 
+function ensureIndex(p) {
+  // p: "en/" or "en/people/" or "en/people/index.html"
+  if (!p) return "index.html";
+  if (p.endsWith(".html")) return p;
+  if (p.endsWith("/")) return p + "index.html";
+  return p + "/index.html";
+}
+
 function pairPath(toLang) {
-  // 返回“不带 BASE 的路径”，例如 "zh/people/"、"en/"
+  // 返回不带 BASE 的路径（尽量保持目录形态），最后交给 ensureIndex()
   const p = stripBase(location.pathname);
 
   if (p.startsWith("en/")) return (toLang === "zh") ? p.replace(/^en\//, "zh/") : p;
@@ -42,27 +49,27 @@ function setNav() {
     zh: { news: "新闻", people: "成员", publications: "论文", join: "加入我们", toggle: "EN" }
   };
 
-  // 实验室主页（英文/中文各自主页）
+  // 1) 左上角 Brand：明确指向“实验室主页”
   const brand = document.getElementById("brand-link");
-  if (brand) brand.href = absPath(`${L}/`);
+  if (brand) brand.href = absPath(`${L}/index.html`);
 
-  // 顶部导航链接（用绝对路径，避免在子目录里相对跳转出错）
+  // 2) 顶部导航：明确指向各栏目 index.html
   document.querySelectorAll(".nav-link").forEach(a => {
     const key = a.getAttribute("data-key");
     if (!key) return;
     a.textContent = labels[L][key] ?? a.textContent;
-    a.href = absPath(`${L}/${key}/`);
+    a.href = absPath(`${L}/${key}/index.html`);
   });
 
-  // 中英文切换
+  // 3) 语言切换：保持当前栏目路径，并落到 index.html
   const t = document.getElementById("lang-toggle");
   if (t) {
     t.textContent = labels[L].toggle;
     const targetLang = (L === "en") ? "zh" : "en";
-    t.href = absPath(pairPath(targetLang));
+    t.href = absPath(ensureIndex(pairPath(targetLang)));
   }
 
-  // 高亮当前页
+  // 4) 高亮当前页
   const p = stripBase(location.pathname);
   let active = "";
   if (p.includes("news/")) active = "news";
