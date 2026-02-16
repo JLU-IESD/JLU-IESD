@@ -19,7 +19,7 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/news.en.json").then(r => r.json()).then(items => {
+    fetch("data/news.zh.json").then(r => r.json()).then(items => {
       const el = document.getElementById("list");
       if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
       el.innerHTML = items.map(n => `
@@ -33,4 +33,3 @@
   </script>
 </body>
 </html>
-
