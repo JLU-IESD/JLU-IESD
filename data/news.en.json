@@ -3,7 +3,7 @@
     "date": "2026-02-01",
     "title": "Our lab website is online",
     "summary": "The JLU-IESD lab website is now live on GitHub Pages.",
-    "link": "https://jlu-iesd.github.io/JLU-IESD/en/",
+    "link": "",
     "tags": ["Website"],
     "pinned": true
   },
@@ -16,3 +16,4 @@
     "pinned": false
   }
 ]
+
