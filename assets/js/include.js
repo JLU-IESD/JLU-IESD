@@ -52,9 +52,9 @@ function setNav() {
     zh: { news: "新闻", people: "成员", publications: "论文", join: "加入我们", toggle: "EN" }
   };
 
-  // Brand -> 实验室主页
-  const brand = document.getElementById("brand-link");
-  if (brand) brand.href = absPath(`${L}/index.html`);
+  // // Brand -> 实验室主页
+  // const brand = document.getElementById("brand-link");
+  // if (brand) brand.href = absPath(`${L}/index.html`);
 
   // Nav
   document.querySelectorAll(".nav-link").forEach(a => {
@@ -88,3 +88,4 @@ function setNav() {
   await inject("#site-footer", absPath("partials/footer.html"));
   setNav();
 })();
+
