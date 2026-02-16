@@ -8,31 +8,27 @@
     "pinned": true
   },
   {
-    "date": "2026-01",
+    "date": "2026-01-15",
     "title": "New paper accepted",
-    "summary": "One paper have been accepted by WWW 2026, congrats Jiamiao! 🎉🎉🎉",
-    "link": "",
-    "tags": ["Publication"],
-    "pinned": false
-  },
-    {
-    "date": "2026-01",
-    "title": "New paper accepted",
-    "summary": "Three paper has been accepted by KBS, TGRS and ESWA . Congratulations to Yubing, Aohua and Shijun! 🎉🎉🎉",
+    "summary": "One paper has been accepted by WWW 2026. Congratulations to Jiamiao!",
     "link": "",
     "tags": ["Publication"],
     "pinned": false
   },
   {
-    "date": "2025-11",
+    "date": "2026-01-10",
     "title": "New paper accepted",
-    "summary": "Two paper have been accepted by AAAI 2026, congrats Tongshun! 🎉🎉🎉",
+    "summary": "Three papers have been accepted by KBS, TGRS, and ESWA. Congratulations to Yubing, Aohua, and Shijun!",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  },
+  {
+    "date": "2025-11-15",
+    "title": "New paper accepted",
+    "summary": "Two papers have been accepted by AAAI 2026. Congratulations to Tongshun!",
     "link": "",
     "tags": ["Publication"],
     "pinned": false
   }
 ]
-
-
-
-
