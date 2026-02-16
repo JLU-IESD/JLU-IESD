@@ -1,16 +1,20 @@
 {
-  "leader": [
+  "leader":
     {
       "name": "Prof. Pingping Liu",
       "photo": "assets/img/liupp.jpg",
       "homepage": "http://ccst.jlu.edu.cn/info/1367/20528.htm",
       "email": "liupp@jlu.edu.cn",
       "bio": "Liu Pingping is a Professor at the School of Computer Science and Technology, Jilin University, and a doctoral supervisor. She is a member of the China Computer Federation. Her research interests include low-level vision image enhancement, metric learning, medical image analysis, infrared small target detection, and embedded artificial intelligence. In the past three years, she has published 21 academic papers in top international conferences/journals (CCF-A/B/C, Chinese Academy of Sciences Zones 1/2), with 11 of these papers as the first or corresponding author. She serves as an editorial board member for the Journal of Jilin University (Engineering Edition) and has been a reviewer for leading CCF conferences such as IJCAI, AAAI, NIPS, ACM MM, as well as for flagship IEEE journals including TIP, TCYB, TNNLS, and ACM flagship journals like TMM and TKDD. She has received the “2024 China Association for Productivity Promotion Scientific and Technological Progress Award (Second Prize)” (ranked first) and the “2024 China Invention Association Innovation and Entrepreneurship Award (Second Prize)” (ranked third). Professor Liu holds 31 authorized patents in China. She has undertaken multiple research projects, including those supported by the National Natural Science Foundation, the China Postdoctoral Fund, the Jilin Provincial Natural Science Fund, the Jilin Provincial Youth Science Fund, and key R&D projects in the industrial sector of Jilin Province."
-    }
-  ],
+    },
   "phd": [
     {
-      "name": "PhD Student A",
+      "name": "Tongshun Zhang",
+      "photo": "assets/img/people/phd-a.jpg",
+      "homepage": "https://example.com"
+    },
+    {
+      "name": "Yubing Lu",
       "photo": "assets/img/people/phd-a.jpg",
       "homepage": "https://example.com"
     }
@@ -29,4 +33,5 @@
     }
   ]
 }
+
 
