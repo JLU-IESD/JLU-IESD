@@ -36,7 +36,12 @@ function pairPath(toLang) {
 async function inject(selector, url) {
   const el = document.querySelector(selector);
   if (!el) return;
+
   const res = await fetch(url, { cache: "no-cache" });
+  if (!res.ok) {
+    el.innerHTML = ""; // 避免把 404 页面注入进来
+    return;
+  }
   el.innerHTML = await res.text();
 }
 
@@ -59,7 +64,7 @@ function setNav() {
     a.href = absPath(`${L}/${key}/index.html`);
   });
 
-  // Language toggle (stay on same section)
+  // Language toggle
   const t = document.getElementById("lang-toggle");
   if (t) {
     t.textContent = labels[L].toggle;
@@ -78,7 +83,8 @@ function setNav() {
 }
 
 (async function () {
-  await inject("#site-header", "partials/header.html");
-  await inject("#site-footer", "partials/footer.html");
+  // 注意：partials 在根目录，必须用 absPath
+  await inject("#site-header", absPath("partials/header.html"));
+  await inject("#site-footer", absPath("partials/footer.html"));
   setNav();
 })();
