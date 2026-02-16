@@ -19,72 +19,89 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-  function esc(s){ return String(s ?? "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
 
-  function personCard(p, withLink=true){
-    const name = esc(p.name);
-    const img = p.photo ? `<img class="avatar" src="${esc(p.photo)}" alt="${name}">` : `<div class="avatar placeholder"></div>`;
-    const title = withLink && p.homepage
-      ? `<h3><a href="${esc(p.homepage)}" target="_blank" rel="noopener">${name}</a></h3>`
-      : `<h3>${name}</h3>`;
-    return `
-      <article class="person card">
-        ${img}
-        <div class="person-body">
-          ${title}
-          ${p.email ? `<div class="meta"><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></div>` : ``}
-          ${p.bio ? `<p>${esc(p.bio)}</p>` : ``}
+    function leaderCard(p){
+      if(!p) return "<p>Coming soon.</p>";
+      const name = esc(p.name);
+      return `
+        <article class="leader card">
+          ${p.photo ? `<img class="avatar-lg" src="${esc(p.photo)}" alt="${name}">` : `<div class="avatar-lg placeholder"></div>`}
+          <div>
+            <h3 class="leader-name">
+              ${p.homepage ? `<a href="${esc(p.homepage)}" target="_blank" rel="noopener">${name}</a>` : name}
+            </h3>
+            <div class="meta">
+              ${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : ""}
+            </div>
+            ${p.bio ? `<p>${esc(p.bio)}</p>` : ""}
+          </div>
+        </article>
+      `;
+    }
+
+    function tile(p, link=true){
+      const name = esc(p.name);
+      const title = (link && p.homepage)
+        ? `<a href="${esc(p.homepage)}" target="_blank" rel="noopener">${name}</a>`
+        : name;
+
+      return `
+        <article class="tile card">
+          ${p.photo ? `<img class="avatar" src="${esc(p.photo)}" alt="${name}">` : `<div class="avatar placeholder"></div>`}
+          <div class="tile-name">${title}</div>
+        </article>
+      `;
+    }
+
+    fetch("data/people.en.json").then(r => r.json()).then(data => {
+      const el = document.getElementById("list");
+
+      const phd = (data.phd || []).map(p => tile(p, true)).join("");
+      const master = (data.master || []).map(p => tile(p, false)).join("");
+
+      const alumniArr = (data.alumni || []).slice().sort((a,b) => {
+        const ya = Number(a.year || 0), yb = Number(b.year || 0);
+        return (yb - ya) || String(a.name||"").localeCompare(String(b.name||""));
+      });
+      const alumni = alumniArr.length ? `
+        <div class="card">
+          <ul class="alumni">
+            ${alumniArr.map(a => `
+              <li>
+                <span class="alumni-name">${esc(a.name)}</span>
+                <span class="alumni-dest">${esc(a.destination || "")}</span>
+                <span class="alumni-year">${esc(a.year || "")}</span>
+              </li>
+            `).join("")}
+          </ul>
         </div>
-      </article>
-    `;
-  }
+      ` : "<p>Coming soon.</p>";
 
-  fetch("data/people.en.json").then(r => r.json()).then(data => {
-    const el = document.getElementById("list");
+      el.innerHTML = `
+        <section class="people-section">
+          <h2>Leader</h2>
+          ${leaderCard(data.leader)}
+        </section>
 
-    const leader = (data.leader || []).map(p => personCard(p, true)).join("") || "<p>Coming soon.</p>";
-    const phd = (data.phd || []).map(p => personCard(p, true)).join("") || "<p>Coming soon.</p>";
-    const master = (data.master || []).map(p => personCard(p, false)).join("") || "<p>Coming soon.</p>";
+        <section class="people-section">
+          <h2>Ph.D. Students</h2>
+          <div class="people-grid">${phd || "<p>Coming soon.</p>"}</div>
+        </section>
 
-    const alumniArr = (data.alumni || []);
-    const alumni = alumniArr.length ? `
-      <div class="card">
-        <ul class="alumni">
-          ${alumniArr.map(a => `
-            <li>
-              <span class="alumni-name">${esc(a.name)}</span>
-              <span class="alumni-dest">${esc(a.destination || "")}</span>
-              <span class="alumni-year">${esc(a.year || "")}</span>
-            </li>
-          `).join("")}
-        </ul>
-      </div>
-    ` : "<p>Coming soon.</p>";
+        <section class="people-section">
+          <h2>M.S. Students</h2>
+          <div class="people-grid">${master || "<p>Coming soon.</p>"}</div>
+        </section>
 
-    el.innerHTML = `
-      <section class="people-section">
-        <h2>Leader</h2>
-        ${leader}
-      </section>
-
-      <section class="people-section">
-        <h2>Ph.D. Students</h2>
-        <div class="people-grid">${phd}</div>
-      </section>
-
-      <section class="people-section">
-        <h2>M.S. Students</h2>
-        <div class="people-grid">${master}</div>
-      </section>
-
-      <section class="people-section">
-        <h2>Alumni</h2>
-        ${alumni}
-      </section>
-    `;
-  });
-</script>
+        <section class="people-section">
+          <h2>Alumni</h2>
+          ${alumni}
+        </section>
+      `;
+    });
+  </script>
 </body>
 </html>
-
-
