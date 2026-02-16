@@ -1,44 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <base href="/JLU-IESD/">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <title>Publications | JLU-IESD</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JLU-IESD Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="container">
-    <h1>Publications</h1>
-    <div id="list"></div>
+    <h1>JLU-IESD Lab</h1>
+    <div class="card">
+      <p>
+        Welcome to the JLU-IESD Lab. This is the lab homepage. Put your lab introduction, research
+        directions, highlights, and contact info here.
+      </p>
+    </div>
   </main>
 
   <div id="site-footer"></div>
-
-  <script src="assets/js/include.js"></script>
-  <script>
-    fetch("data/publications.en.json").then(r => r.json()).then(items => {
-      const el = document.getElementById("list");
-      if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
-
-      // sort: year desc
-      items.sort((a,b) => (b.year||0) - (a.year||0));
-
-      el.innerHTML = items.map(pub => `
-        <article class="card">
-          <div class="meta">${pub.year || ""} ${pub.venue ? "· " + pub.venue : ""}</div>
-          <h3>${pub.title || ""}</h3>
-          ${pub.authors ? `<p>${pub.authors}</p>` : ""}
-          <p>
-            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank" rel="noopener">PDF</a>` : ""}
-            ${pub.doi ? ` ${pub.pdf ? "·" : ""} <a href="${pub.doi}" target="_blank" rel="noopener">DOI</a>` : ""}
-            ${pub.code ? ` ${(pub.pdf||pub.doi) ? "·" : ""} <a href="${pub.code}" target="_blank" rel="noopener">Code</a>` : ""}
-          </p>
-        </article>
-      `).join("");
-    });
-  </script>
+  <script src="../assets/js/include.js"></script>
 </body>
 </html>
