@@ -1,19 +1,36 @@
 [
   {
-    "date": "2026-02-01",
+    "date": "2026-02-17",
     "title": "Our lab website is online",
-    "summary": "The JLU-IESD lab website is now live on GitHub Pages.",
+    "summary": "The JLU-IESD lab website is online.",
     "link": "",
     "tags": ["Website"],
     "pinned": true
   },
   {
-    "date": "2026-01-15",
+    "date": "2026-01",
     "title": "New paper accepted",
-    "summary": "Our paper has been accepted. Congratulations to the team!",
+    "summary": "One paper have been accepted by WWW 2026, congrats Jiamiao! 🎉🎉🎉",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  }
+    {
+    "date": "2026-02",
+    "title": "New paper accepted",
+    "summary": "Three paper has been accepted by KBS, TGRS and ESWA . Congratulations to Yubing, Aohua and Shijun! 🎉🎉🎉",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  }
+  {
+    "date": "2025-11",
+    "title": "New paper accepted",
+    "summary": "Two paper have been accepted by AAAI 2026, congrats Tongshun! 🎉🎉🎉",
     "link": "",
     "tags": ["Publication"],
     "pinned": false
   }
 ]
+
 
