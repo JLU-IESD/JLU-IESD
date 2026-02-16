@@ -1,1 +1,31 @@
-[]
+{
+  "leader": [
+    {
+      "name": "Prof. Name",
+      "photo": "assets/img/people/pi.jpg",
+      "homepage": "https://example.com",
+      "email": "name@example.com",
+      "bio": "Short bio (research interests, affiliation, etc.)."
+    }
+  ],
+  "phd": [
+    {
+      "name": "PhD Student A",
+      "photo": "assets/img/people/phd-a.jpg",
+      "homepage": "https://example.com"
+    }
+  ],
+  "master": [
+    {
+      "name": "Master Student A",
+      "photo": "assets/img/people/ms-a.jpg"
+    }
+  ],
+  "alumni": [
+    {
+      "name": "Alumni A",
+      "destination": "Company / University",
+      "year": "2024"
+    }
+  ]
+}
