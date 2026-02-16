@@ -19,17 +19,30 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/news.en.json").then(r => r.json()).then(items => {
-      const el = document.getElementById("list");
-      if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
-      el.innerHTML = items.map(n => `
-        <article class="card">
-          <div class="meta">${n.date || ""}</div>
-          <h3>${n.title || ""}</h3>
-          <p>${n.summary || ""}</p>
-        </article>
-      `).join("");
-    });
-  </script>
+  function byDateDesc(a, b) {
+    return (b.date || "").localeCompare(a.date || "");
+  }
+
+  fetch("data/news.en.json").then(r => r.json()).then(items => {
+    const el = document.getElementById("list");
+    if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
+
+    items.sort((a,b) => (b.pinned === true) - (a.pinned === true) || byDateDesc(a,b));
+
+    el.innerHTML = items.map(n => `
+      <article class="card">
+        <div class="meta">
+          ${n.date || ""}
+          ${Array.isArray(n.tags) && n.tags.length ? " · " + n.tags.join(", ") : ""}
+          ${n.pinned ? " · Pinned" : ""}
+        </div>
+        <h3>${n.title || ""}</h3>
+        <p>${n.summary || ""}</p>
+        ${n.link ? `<p><a href="${n.link}" target="_blank" rel="noopener">Read more →</a></p>` : ""}
+      </article>
+    `).join("");
+  });
+</script>
 </body>
 </html>
+
