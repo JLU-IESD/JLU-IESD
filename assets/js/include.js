@@ -18,7 +18,6 @@ function lang() {
 }
 
 function ensureIndex(p) {
-  // p: "en/" or "en/people/" or "en/people/index.html"
   if (!p) return "index.html";
   if (p.endsWith(".html")) return p;
   if (p.endsWith("/")) return p + "index.html";
@@ -26,7 +25,6 @@ function ensureIndex(p) {
 }
 
 function pairPath(toLang) {
-  // 返回不带 BASE 的路径（尽量保持目录形态），最后交给 ensureIndex()
   const p = stripBase(location.pathname);
 
   if (p.startsWith("en/")) return (toLang === "zh") ? p.replace(/^en\//, "zh/") : p;
@@ -49,11 +47,11 @@ function setNav() {
     zh: { news: "新闻", people: "成员", publications: "论文", join: "加入我们", toggle: "EN" }
   };
 
-  // 1) 左上角 Brand：明确指向“实验室主页”
+  // Brand -> 实验室主页
   const brand = document.getElementById("brand-link");
   if (brand) brand.href = absPath(`${L}/index.html`);
 
-  // 2) 顶部导航：明确指向各栏目 index.html
+  // Nav
   document.querySelectorAll(".nav-link").forEach(a => {
     const key = a.getAttribute("data-key");
     if (!key) return;
@@ -61,7 +59,7 @@ function setNav() {
     a.href = absPath(`${L}/${key}/index.html`);
   });
 
-  // 3) 语言切换：保持当前栏目路径，并落到 index.html
+  // Language toggle (stay on same section)
   const t = document.getElementById("lang-toggle");
   if (t) {
     t.textContent = labels[L].toggle;
@@ -69,7 +67,7 @@ function setNav() {
     t.href = absPath(ensureIndex(pairPath(targetLang)));
   }
 
-  // 4) 高亮当前页
+  // Active highlight
   const p = stripBase(location.pathname);
   let active = "";
   if (p.includes("news/")) active = "news";
