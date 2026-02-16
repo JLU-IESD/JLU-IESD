@@ -128,3 +128,45 @@ p{ margin: 10px 0; }
   .nav-link{ padding: 6px 8px; }
   h1{ font-size: 26px; }
 }
+
+.people-section{ margin-top: 18px; }
+.people-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.person{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.avatar{
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background:#f3f4f6;
+  flex: 0 0 auto;
+}
+.avatar.placeholder{ background: #f3f4f6; }
+.person-body h3{ margin: 2px 0 6px; }
+
+.alumni{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.alumni li{
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 0.7fr;
+  gap: 10px;
+  padding: 10px 6px;
+  border-top: 1px solid var(--border);
+}
+.alumni li:first-child{ border-top: none; }
+.alumni-name{ font-weight: 600; }
+.alumni-dest{ color: var(--muted); }
+.alumni-year{ color: var(--muted); text-align: right; }
+
