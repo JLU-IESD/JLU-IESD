@@ -5,13 +5,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>PEOPLE | JLU-IESD</title>
+  <title>People | JLU-IESD</title>
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="container">
-    <h1>News</h1>
+    <h1>People</h1>
     <div id="list"></div>
   </main>
 
@@ -19,18 +19,20 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/news.en.json").then(r => r.json()).then(items => {
+    fetch("data/people.en.json").then(r => r.json()).then(items => {
       const el = document.getElementById("list");
       if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
-      el.innerHTML = items.map(n => `
+
+      el.innerHTML = items.map(p => `
         <article class="card">
-          <div class="meta">${n.date || ""}</div>
-          <h3>${n.title || ""}</h3>
-          <p>${n.summary || ""}</p>
+          <h3>${p.name || ""}</h3>
+          <div class="meta">${[p.role, p.title].filter(Boolean).join(" · ")}</div>
+          ${p.email ? `<p><a href="mailto:${p.email}">${p.email}</a></p>` : ""}
+          ${p.website ? `<p><a href="${p.website}" target="_blank" rel="noopener">Website</a></p>` : ""}
+          ${p.interests ? `<p>${p.interests}</p>` : ""}
         </article>
       `).join("");
     });
   </script>
 </body>
 </html>
-
