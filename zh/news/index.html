@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
   <base href="/JLU-IESD/">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>NEWS | JLU-IESD</title>
+  <title>News | JLU-IESD</title>
 </head>
 <body>
   <div id="site-header"></div>
@@ -19,7 +19,7 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/news.en.json").then(r => r.json()).then(items => {
+    fetch("data/news.zh.json").then(r => r.json()).then(items => {
       const el = document.getElementById("list");
       if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
       el.innerHTML = items.map(n => `
@@ -33,4 +33,3 @@
   </script>
 </body>
 </html>
-
