@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "date": "2026-02-01",
+    "title": "Our lab website is online",
+    "summary": "The JLU-IESD lab website is now live on GitHub Pages.",
+    "link": "https://jlu-iesd.github.io/JLU-IESD/en/",
+    "tags": ["Website"],
+    "pinned": true
+  },
+  {
+    "date": "2026-01-15",
+    "title": "New paper accepted",
+    "summary": "Our paper has been accepted. Congratulations to the team!",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  }
+]
