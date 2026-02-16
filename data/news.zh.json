@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "date": "2026-02-01",
+    "title": "实验室网站上线",
+    "summary": "JLU-IESD 实验室网站已通过 GitHub Pages 发布。",
+    "link": "https://jlu-iesd.github.io/JLU-IESD/zh/",
+    "tags": ["网站"],
+    "pinned": true
+  }
+]
