@@ -5,34 +5,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>JLU-IESD</title>
+  <title>Publications | JLU-IESD</title>
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="container">
-    <h1>JLU-IESD Lab</h1>
-    <p>Welcome to our lab website.</p>
-
-    <section style="margin-top:24px;">
-      <h2>Latest News</h2>
-      <div id="latest-news"></div>
-      <p><a href="en/news/">View all news →</a></p>
-    </section>
+    <h1>Publications</h1>
+    <div id="list"></div>
   </main>
 
   <div id="site-footer"></div>
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/news.en.json").then(r => r.json()).then(items => {
-      const el = document.getElementById("latest-news");
+    fetch("data/publications.en.json").then(r => r.json()).then(items => {
+      const el = document.getElementById("list");
       if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
-      el.innerHTML = items.slice(0, 3).map(n => `
+
+      // sort: year desc
+      items.sort((a,b) => (b.year||0) - (a.year||0));
+
+      el.innerHTML = items.map(pub => `
         <article class="card">
-          <div class="meta">${n.date || ""}</div>
-          <h3>${n.title || ""}</h3>
-          <p>${n.summary || ""}</p>
+          <div class="meta">${pub.year || ""} ${pub.venue ? "· " + pub.venue : ""}</div>
+          <h3>${pub.title || ""}</h3>
+          ${pub.authors ? `<p>${pub.authors}</p>` : ""}
+          <p>
+            ${pub.pdf ? `<a href="${pub.pdf}" target="_blank" rel="noopener">PDF</a>` : ""}
+            ${pub.doi ? ` ${pub.pdf ? "·" : ""} <a href="${pub.doi}" target="_blank" rel="noopener">DOI</a>` : ""}
+            ${pub.code ? ` ${(pub.pdf||pub.doi) ? "·" : ""} <a href="${pub.code}" target="_blank" rel="noopener">Code</a>` : ""}
+          </p>
         </article>
       `).join("");
     });
