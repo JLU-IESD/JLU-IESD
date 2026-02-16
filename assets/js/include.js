@@ -1,10 +1,19 @@
-function isZh() { return location.pathname.startsWith("/zh/"); }
+const BASE = "/JLU-IESD/"; // 你的 Pages 子路径
+
+function stripBase(pathname) {
+  return pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname.replace(/^\//, "");
+}
+
+function isZh() {
+  return stripBase(location.pathname).startsWith("zh/");
+}
 function lang() { return isZh() ? "zh" : "en"; }
 
 function pairPath(toLang) {
-  const p = location.pathname;
-  if (toLang === "zh") return p.startsWith("/en/") ? p.replace("/en/", "/zh/") : "/zh/";
-  return p.startsWith("/zh/") ? p.replace("/zh/", "/en/") : "/en/";
+  const p = stripBase(location.pathname);
+  if (p.startsWith("en/")) return (toLang === "zh") ? p.replace(/^en\//, "zh/") : p;
+  if (p.startsWith("zh/")) return (toLang === "en") ? p.replace(/^zh\//, "en/") : p;
+  return `${toLang}/`;
 }
 
 async function inject(selector, url) {
@@ -17,14 +26,12 @@ async function inject(selector, url) {
 function setNav() {
   const L = lang();
   const labels = {
-    en: { news:"News", people:"People", publications:"Publications", join:"Join Us", brand:"JLU-IESD", toggle:"中文" },
-    zh: { news:"新闻", people:"成员", publications:"论文", join:"加入我们", brand:"JLU-IESD", toggle:"EN" }
+    en: { news:"News", people:"People", publications:"Publications", join:"Join Us", toggle:"中文" },
+    zh: { news:"新闻", people:"成员", publications:"论文", join:"加入我们", toggle:"EN" }
   };
 
-  // rewrite header links/labels
-  const root = `/${L}/`;
+  const root = `${L}/`;
   document.getElementById("brand-link").href = root;
-  document.getElementById("brand-link").textContent = labels[L].brand;
 
   document.querySelectorAll(".nav-link").forEach(a => {
     const key = a.getAttribute("data-key");
@@ -36,8 +43,7 @@ function setNav() {
   t.textContent = labels[L].toggle;
   t.href = pairPath(L === "en" ? "zh" : "en");
 
-  // active
-  const p = location.pathname;
+  const p = stripBase(location.pathname);
   let active = "";
   if (p.includes("/news/")) active = "news";
   else if (p.includes("/people/")) active = "people";
@@ -47,7 +53,7 @@ function setNav() {
 }
 
 (async function () {
-  await inject("#site-header", "/partials/header.html");
-  await inject("#site-footer", "/partials/footer.html");
+  await inject("#site-header", "partials/header.html");
+  await inject("#site-footer", "partials/footer.html");
   setNav();
 })();
