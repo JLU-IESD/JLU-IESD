@@ -187,7 +187,7 @@ body::before{
   position: fixed;
   inset: 0;
   background: url("/JLU-IESD/img/background.jpg") center/cover no-repeat;
-  opacity: 0.16;          /* 调这里：0.08~0.25 一般比较舒服 */
+  opacity: 0.08;          /* 调这里：0.08~0.25 一般比较舒服 */
   z-index: -1;
 }
 
@@ -201,5 +201,6 @@ body::before{
 .site-header{
   background: rgba(255,255,255,0.82);
 }
+
 
 
