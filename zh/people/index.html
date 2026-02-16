@@ -5,13 +5,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>People | JLU-IESD</title>
+  <title>成员 | JLU-IESD</title>
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="container">
-    <h1>People</h1>
+    <h1>成员</h1>
     <div id="list"></div>
   </main>
 
@@ -19,19 +19,88 @@
 
   <script src="assets/js/include.js"></script>
   <script>
-    fetch("data/people.zh.json").then(r => r.json()).then(items => {
-      const el = document.getElementById("list");
-      if (!items.length) { el.innerHTML = "<p>Coming soon.</p>"; return; }
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, m => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    }[m]));
 
-      el.innerHTML = items.map(p => `
-        <article class="card">
-          <h3>${p.name || ""}</h3>
-          <div class="meta">${[p.role, p.title].filter(Boolean).join(" · ")}</div>
-          ${p.email ? `<p><a href="mailto:${p.email}">${p.email}</a></p>` : ""}
-          ${p.website ? `<p><a href="${p.website}" target="_blank" rel="noopener">Website</a></p>` : ""}
-          ${p.interests ? `<p>${p.interests}</p>` : ""}
+    function leaderCard(p){
+      if(!p) return "<p>敬请期待。</p>";
+      const name = esc(p.name);
+      return `
+        <article class="leader card">
+          ${p.photo ? `<img class="avatar-lg" src="${esc(p.photo)}" alt="${name}">` : `<div class="avatar-lg placeholder"></div>`}
+          <div>
+            <h3 class="leader-name">
+              ${p.homepage ? `<a href="${esc(p.homepage)}" target="_blank" rel="noopener">${name}</a>` : name}
+            </h3>
+            <div class="meta">
+              ${p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : ""}
+            </div>
+            ${p.bio ? `<p>${esc(p.bio)}</p>` : ""}
+          </div>
         </article>
-      `).join("");
+      `;
+    }
+
+    function tile(p, link=true){
+      const name = esc(p.name);
+      const title = (link && p.homepage)
+        ? `<a href="${esc(p.homepage)}" target="_blank" rel="noopener">${name}</a>`
+        : name;
+
+      return `
+        <article class="tile card">
+          ${p.photo ? `<img class="avatar" src="${esc(p.photo)}" alt="${name}">` : `<div class="avatar placeholder"></div>`}
+          <div class="tile-name">${title}</div>
+        </article>
+      `;
+    }
+
+    fetch("data/people.zh.json").then(r => r.json()).then(data => {
+      const el = document.getElementById("list");
+
+      const phd = (data.phd || []).map(p => tile(p, true)).join("");
+      const master = (data.master || []).map(p => tile(p, false)).join("");
+
+      const alumniArr = (data.alumni || []).slice().sort((a,b) => {
+        const ya = Number(a.year || 0), yb = Number(b.year || 0);
+        return (yb - ya) || String(a.name||"").localeCompare(String(b.name||""));
+      });
+      const alumni = alumniArr.length ? `
+        <div class="card">
+          <ul class="alumni">
+            ${alumniArr.map(a => `
+              <li>
+                <span class="alumni-name">${esc(a.name)}</span>
+                <span class="alumni-dest">${esc(a.destination || "")}</span>
+                <span class="alumni-year">${esc(a.year || "")}</span>
+              </li>
+            `).join("")}
+          </ul>
+        </div>
+      ` : "<p>敬请期待。</p>";
+
+      el.innerHTML = `
+        <section class="people-section">
+          <h2>负责人</h2>
+          ${leaderCard(data.leader)}
+        </section>
+
+        <section class="people-section">
+          <h2>在读博士生</h2>
+          <div class="people-grid">${phd || "<p>敬请期待。</p>"}</div>
+        </section>
+
+        <section class="people-section">
+          <h2>在读硕士生</h2>
+          <div class="people-grid">${master || "<p>敬请期待。</p>"}</div>
+        </section>
+
+        <section class="people-section">
+          <h2>已毕业学生</h2>
+          ${alumni}
+        </section>
+      `;
     });
   </script>
 </body>
