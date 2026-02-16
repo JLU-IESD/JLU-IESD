@@ -202,5 +202,7 @@ body::before{
   background: rgba(255,255,255,0.82);
 }
 
+.brand { cursor: default; user-select: none; }
+.brand img { display:block; height: 28px; width: auto; }
 
 
