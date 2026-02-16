@@ -130,28 +130,38 @@ p{ margin: 10px 0; }
 }
 
 .people-section{ margin-top: 18px; }
+
+.leader{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.leader-name{ margin: 2px 0 6px; }
+
 .people-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
-.person{
-  display: flex;
+.tile{
+  display: grid;
+  grid-template-columns: 84px 1fr;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
 }
-.avatar{
-  width: 84px;
-  height: 84px;
+.tile-name{ font-weight: 600; }
+
+.avatar, .avatar-lg{
   border-radius: 14px;
   object-fit: cover;
   border: 1px solid var(--border);
   background:#f3f4f6;
-  flex: 0 0 auto;
 }
-.avatar.placeholder{ background: #f3f4f6; }
-.person-body h3{ margin: 2px 0 6px; }
+.avatar{ width: 84px; height: 84px; }
+.avatar-lg{ width: 160px; height: 160px; }
+.placeholder{ background:#f3f4f6; }
 
 .alumni{
   list-style: none;
@@ -169,4 +179,26 @@ p{ margin: 10px 0; }
 .alumni-name{ font-weight: 600; }
 .alumni-dest{ color: var(--muted); }
 .alumni-year{ color: var(--muted); text-align: right; }
+
+/* ========= Background image ========= */
+body{ position: relative; }
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: url("img/background.jpg") center/cover no-repeat;
+  opacity: 0.16;          /* 调这里：0.08~0.25 一般比较舒服 */
+  z-index: -1;
+}
+
+/* 让内容更清晰（可选但推荐） */
+.container{
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(229,231,235,0.7);
+  border-radius: 16px;
+  padding: 18px;
+}
+.site-header{
+  background: rgba(255,255,255,0.82);
+}
 
