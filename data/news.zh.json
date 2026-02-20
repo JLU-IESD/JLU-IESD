@@ -1,10 +1,34 @@
 [
   {
-    "date": "2026-02-01",
+    "date": "2026-02-17",
     "title": "实验室网站上线",
-    "summary": "JLU-IESD 实验室网站已通过 GitHub Pages 发布。",
-    "link": "https://jlu-iesd.github.io/JLU-IESD/zh/",
+    "summary": "JLU-IESD 实验室网站正式上线。",
+    "link": "",
     "tags": ["网站"],
     "pinned": true
+  },
+  {
+    "date": "2026-01-01",
+    "title": "论文录用",
+    "summary": "1 篇论文被 WWW 2026 录用，祝贺佳妙！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
+  },
+  {
+    "date": "2026-02-01",
+    "title": "论文录用",
+    "summary": "3 篇论文分别被 KBS、TGRS 和 ESWA 录用，祝贺禹冰、奥华和士骏！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
+  },
+  {
+    "date": "2025-11-01",
+    "title": "论文录用",
+    "summary": "2 篇论文被 AAAI 2026 录用，祝贺同顺！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
   }
 ]
