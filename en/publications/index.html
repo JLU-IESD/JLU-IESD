@@ -32,7 +32,7 @@
   <h1>Publications</h1>
 
   <h2 class="pub-year">2026</h2>
-  <ol class="pub-list" start="1">
+  <ol class="pub-list">
   <li class="pub-item">
         <a class="pub-title" href="#">UrbanMoE: A Sparse Multi-Modal Mixture-of-Experts Framework for Multi-Task Urban Region Profiling</a>
         <div class="pub-authors">Pingping Liu, Jiamiao Liu, Zijian Zhang*, Hao Miao, Qi Jiang, Qingliang Li, Qiuzhan Zhou, Irwin King</div>
@@ -117,7 +117,7 @@
   </ol>
 
   <h2 class="pub-year">2025</h2>
-  <ol class="pub-list" start="5">
+  <ol class="pub-list">
     <li class="pub-item">
       <a class="pub-title" href="#">CWNet: Causal Wavelet Network for Low-Light Image Enhancement</a>
       <div class="pub-authors">Tongshun Zhang, Pingping Liu*, Yubing Lu, Mengen Cai, Zijian Zhang, Zhe Zhang, Qiuzhan Zhou</div>
@@ -212,7 +212,7 @@
   </ol>
 
   <h2 class="pub-year">2024</h2>
-  <ol class="pub-list" start="14">
+  <ol class="pub-list">
     <li class="pub-item">
       <a class="pub-title" href="#">DMFourLLIE: Dual-Stage and Multi-Branch Fourier Network for Low-Light Image Enhancement</a>
       <div class="pub-authors">Tongshun Zhang, Pingping Liu*, Ming Zhao, Haotian Lv</div>
@@ -276,7 +276,7 @@
   </ol>
 
   <h2 class="pub-year">2023</h2>
-  <ol class="pub-list" start="20">
+  <ol class="pub-list">
     <li class="pub-item">
       <a class="pub-title" href="#">An Intra-Class Ranking Metric for Remote Sensing Image Retrieval</a>
       <div class="pub-authors">Pingping Liu*, Xiaofeng Liu, Yifan Wang, Zetong Liu, Qiuzhan Zhou, Qingliang Li</div>
@@ -323,7 +323,7 @@
   </ol>
 
   <h2 class="pub-year">2021</h2>
-  <ol class="pub-list" start="24">
+  <ol class="pub-list">
     <li class="pub-item">
       <a class="pub-title" href="#">Deep Hashing Using Proxy Loss on Remote Sensing Image Retrieval</a>
       <div class="pub-authors">Xue Shan, Pingping Liu*, Yifan Wang, Qiuzhan Zhou, Zhen Wang</div>
@@ -345,7 +345,7 @@
   </ol>
 
   <h2 class="pub-year">2020</h2>
-  <ol class="pub-list" start="26">
+  <ol class="pub-list">
     <li class="pub-item">
       <a class="pub-title" href="#">Deep Hash Remote Sensing Image Retrieval with Hard Probability Sampling</a>
       <div class="pub-authors">Xue Shan, Pingping Liu*, Guixia Gou, Qiuzhan Zhou, Zhen Wang</div>
@@ -369,8 +369,29 @@
 
   <div id="site-footer"></div>
   <script src="../../assets/js/include.js"></script>
+
+
+  <script>
+    (function autoNumberPublicationLists() {
+      const lists = document.querySelectorAll("ol.pub-list");
+      let counter = 0;
+  
+      lists.forEach(ol => {
+        // 设置当前 ol 的起始编号
+        ol.start = counter + 1;
+  
+        // 统计该 ol 下的论文条目数量（只数直接子元素 li.pub-item）
+        const items = Array.from(ol.children).filter(
+          el => el.tagName === "LI" && el.classList.contains("pub-item")
+        );
+  
+        counter += items.length;
+      });
+    })();
+  </script>
 </body>
 </html>
+
 
 
 
