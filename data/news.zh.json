@@ -1,4 +1,28 @@
 [
+    {
+    "date": "2026-07-05",
+    "title": "论文录用",
+    "summary": "1 篇论文被 INFFUS 2026 录用，祝贺嘉齐和同顺！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
+  },
+    {
+    "date": "2026-06-25",
+    "title": "论文录用",
+    "summary": "1 篇论文被 TCSVT 2026 录用，祝贺禹冰！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
+  },
+    {
+    "date": "2026-05-20",
+    "title": "论文录用",
+    "summary": "1 篇论文被 IJCAI 2026 录用，祝贺慕尧！",
+    "link": "",
+    "tags": ["论文"],
+    "pinned": false
+  },
   {
     "date": "2026-02-17",
     "title": "实验室网站上线",
