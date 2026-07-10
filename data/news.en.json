@@ -1,4 +1,28 @@
 [
+    {
+    "date": "2026-07-05",
+    "title": "New paper accepted",
+    "summary": "One paper has been accepted by INFFUS 2026. Congratulations to Jiaqi and Tongshun!🎉🎉🎉",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  },
+    {
+    "date": "2026-06-25",
+    "title": "New paper accepted",
+    "summary": "One paper has been accepted by TCSVT 2026. Congratulations to Yubing!🎉🎉🎉",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  },
+    {
+    "date": "2026-05-10",
+    "title": "New paper accepted",
+    "summary": "One paper has been accepted by IJCAI 2026. Congratulations to Muyao!🎉🎉🎉",
+    "link": "",
+    "tags": ["Publication"],
+    "pinned": false
+  },
   {
     "date": "2026-02-17",
     "title": "Our lab website is online",
