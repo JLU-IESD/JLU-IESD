@@ -18,6 +18,11 @@
       "photo": "assets/img/people/phd-a.jpg",
       "homepage": "https://example.com"
     }
+    {
+      "name": "Tianle Fang",
+      "photo": "assets/img/people/ftl.jpg",
+      "homepage": "https://polarisftl.github.io/"
+    }
   ],
   "master": [
     {
